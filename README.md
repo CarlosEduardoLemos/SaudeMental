@@ -22,7 +22,7 @@ Uma plataforma estática de acesso livre com conteúdos educativos, materiais de
 
 - HTML5 semântico;
 - CSS3, com layout responsivo e preferência por movimento reduzido;
-- JavaScript puro, sem backend, armazenamento pessoal, dependências ou etapa de compilação;
+- JavaScript puro organizado em arquivos separados, sem backend, armazenamento pessoal, dependências ou etapa de compilação;
 - SVG inline para ícones e ilustração;
 - Google Fonts (DM Sans e Manrope), com fontes de sistema como alternativa.
 
@@ -45,11 +45,13 @@ mente-em-equilibrio/
 ├── css/
 │   └── style.css
 ├── js/
+│   ├── content.js
 │   └── main.js
 ├── assets/
 │   └── images/
 ├── README.md
-└── .gitignore
+├── .gitignore
+└── .editorconfig
 ```
 
 A ilustração principal e os ícones são SVG inline; por isso, a pasta `assets/images/` está prevista para imagens que venham a ser adicionadas em versões futuras.
