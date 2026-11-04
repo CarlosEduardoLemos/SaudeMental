@@ -4,6 +4,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#f7faf8">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self'; upgrade-insecure-requests"
+    >
     <meta
       name="description"
       content="Informação acessível sobre saúde mental, autocuidado e caminhos para buscar apoio, com foco na vida universitária."
@@ -17,6 +22,7 @@
       rel="stylesheet"
     >
     <link rel="stylesheet" href="css/style.css">
+    <script src="js/content-utils.js" defer></script>
     <script src="js/content.js" defer></script>
     <script src="js/main.js" defer></script>
   </head>
@@ -231,6 +237,13 @@
         </div>
       </section>
 
+      <noscript>
+        <div class="container no-script-note" role="status">
+          Ative o JavaScript para carregar os conteúdos educativos e a biblioteca.
+          A Central de Apoio permanece disponível nesta página.
+        </div>
+      </noscript>
+
       <section class="section-pad pathways" aria-labelledby="pathways-title">
         <div class="container">
           <div class="section-heading centered">
@@ -260,7 +273,7 @@
                 </svg>
               </span>
               <span class="pathway-number">01</span>
-              <h3>Entender</h3>
+              <h3>Compreender</h3>
               <p>Informações educativas sobre saúde mental e desafios comuns.</p>
               <span class="card-arrow" aria-hidden="true">↗</span>
             </a>
@@ -340,122 +353,10 @@
                 autocomplete="off"
               >
             </label>
-            <p class="result-count" id="education-count" aria-live="polite"></p>
+            <p class="result-count" id="education-count" role="status" aria-live="polite" aria-atomic="true"></p>
           </div>
 
           <div class="content-grid education-grid" id="education-grid">
-            <article
-              class="content-card"
-              data-content-card
-              data-content-id="saude-mental"
-              data-search="saúde mental bem-estar emocional cuidado"
-            >
-              <span class="card-kicker">Bem-estar</span>
-              <span class="content-icon icon-sage" aria-hidden="true">✳</span>
-              <h3>Saúde mental e bem-estar</h3>
-              <p>
-                O que influencia nosso bem-estar e por que ele faz parte da saúde
-                como um todo.
-              </p>
-              <button class="card-open" type="button" data-open-content="saude-mental">
-                Ler conteúdo <span aria-hidden="true">→</span>
-              </button>
-            </article>
-
-            <article
-              class="content-card"
-              data-content-card
-              data-content-id="ansiedade"
-              data-search="ansiedade preocupação provas sintomas"
-            >
-              <span class="card-kicker">Emoções</span>
-              <span class="content-icon icon-blue" aria-hidden="true">〰</span>
-              <h3>Ansiedade</h3>
-              <p>
-                Uma reação humana que pode pedir atenção quando se torna frequente
-                ou difícil de manejar.
-              </p>
-              <button class="card-open" type="button" data-open-content="ansiedade">
-                Ler conteúdo <span aria-hidden="true">→</span>
-              </button>
-            </article>
-
-            <article
-              class="content-card"
-              data-content-card
-              data-content-id="depressao"
-              data-search="depressão humor interesse saúde profissional"
-            >
-              <span class="card-kicker">Saúde emocional</span>
-              <span class="content-icon icon-lilac" aria-hidden="true">☁</span>
-              <h3>Depressão</h3>
-              <p>
-                Informação responsável para reduzir estigmas e lembrar que apoio
-                profissional está disponível.
-              </p>
-              <button class="card-open" type="button" data-open-content="depressao">
-                Ler conteúdo <span aria-hidden="true">→</span>
-              </button>
-            </article>
-
-            <article
-              class="content-card"
-              data-content-card
-              data-content-id="estresse-academico"
-              data-search="estresse acadêmico faculdade provas prazos"
-            >
-              <span class="card-kicker">Vida universitária</span>
-              <span class="content-icon icon-peach" aria-hidden="true">◌</span>
-              <h3>Estresse acadêmico</h3>
-              <p>
-                Prazos e exigências podem pesar. Entenda o estresse e considere
-                formas de buscar suporte.
-              </p>
-              <button
-                class="card-open"
-                type="button"
-                data-open-content="estresse-academico"
-              >
-                Ler conteúdo <span aria-hidden="true">→</span>
-              </button>
-            </article>
-
-            <article
-              class="content-card"
-              data-content-card
-              data-content-id="sobrecarga"
-              data-search="sobrecarga trabalho estudo vida pessoal equilíbrio"
-            >
-              <span class="card-kicker">Múltiplas jornadas</span>
-              <span class="content-icon icon-sage" aria-hidden="true">↗</span>
-              <h3>Conciliar trabalho e estudos</h3>
-              <p>Reconheça limites reais quando várias responsabilidades se acumulam.</p>
-              <button class="card-open" type="button" data-open-content="sobrecarga">
-                Ler conteúdo <span aria-hidden="true">→</span>
-              </button>
-            </article>
-
-            <article
-              class="content-card"
-              data-content-card
-              data-content-id="ajuda-profissional"
-              data-search="ajuda profissional psicólogo psicóloga procurar apoio"
-            >
-              <span class="card-kicker">Rede de cuidado</span>
-              <span class="content-icon icon-blue" aria-hidden="true">♡</span>
-              <h3>Procurar ajuda profissional</h3>
-              <p>
-                Você não precisa esperar chegar ao limite para conversar com um
-                serviço de saúde.
-              </p>
-              <button
-                class="card-open"
-                type="button"
-                data-open-content="ajuda-profissional"
-              >
-                Ler conteúdo <span aria-hidden="true">→</span>
-              </button>
-            </article>
           </div>
 
           <p class="empty-state" id="education-empty" hidden>
@@ -500,125 +401,11 @@
             <label class="filter-label" for="library-filter">Categoria</label>
             <select id="library-filter" class="category-select">
               <option value="todos">Todas as categorias</option>
-              <option value="rotina">Rotina</option>
-              <option value="bem-estar">Bem-estar</option>
-              <option value="estudos">Estudos e trabalho</option>
-              <option value="apoio">Rede de apoio</option>
             </select>
-            <p class="result-count library-count" id="library-count" aria-live="polite"></p>
+            <p class="result-count library-count" id="library-count" role="status" aria-live="polite" aria-atomic="true"></p>
           </div>
 
           <div class="content-grid library-grid" id="library-grid">
-            <article
-              class="content-card library-card"
-              data-content-card
-              data-content-id="organizar-rotina"
-              data-category="rotina"
-              data-search="organização rotina prioridades planejamento tempo"
-            >
-              <span class="card-kicker">Rotina</span>
-              <span class="content-icon icon-sage" aria-hidden="true">▦</span>
-              <h3>Organizar a rotina possível</h3>
-              <p>Comece pelas prioridades e planeje com espaço para imprevistos e descanso.</p>
-              <button
-                class="card-open"
-                type="button"
-                data-open-content="organizar-rotina"
-              >
-                Ver ideias <span aria-hidden="true">→</span>
-              </button>
-            </article>
-
-            <article
-              class="content-card library-card"
-              data-content-card
-              data-content-id="sono"
-              data-category="bem-estar"
-              data-search="sono descanso dormir bem-estar"
-            >
-              <span class="card-kicker">Bem-estar</span>
-              <span class="content-icon icon-blue" aria-hidden="true">☾</span>
-              <h3>Dar espaço ao sono</h3>
-              <p>O descanso é parte do cuidado com o corpo e a mente; hábitos regulares podem ajudar.</p>
-              <button class="card-open" type="button" data-open-content="sono">
-                Ver ideias <span aria-hidden="true">→</span>
-              </button>
-            </article>
-
-            <article
-              class="content-card library-card"
-              data-content-card
-              data-content-id="pausas"
-              data-category="bem-estar"
-              data-search="pausas descanso intervalo movimento estudo trabalho"
-            >
-              <span class="card-kicker">Bem-estar</span>
-              <span class="content-icon icon-peach" aria-hidden="true">☼</span>
-              <h3>Fazer pausas com intenção</h3>
-              <p>Pequenos intervalos podem criar uma transição entre tarefas e compromissos.</p>
-              <button class="card-open" type="button" data-open-content="pausas">
-                Ver ideias <span aria-hidden="true">→</span>
-              </button>
-            </article>
-
-            <article
-              class="content-card library-card"
-              data-content-card
-              data-content-id="equilibrio-jornadas"
-              data-category="estudos"
-              data-search="equilíbrio estudos trabalho vida pessoal limites sobrecarga"
-            >
-              <span class="card-kicker">Estudos e trabalho</span>
-              <span class="content-icon icon-lilac" aria-hidden="true">⌁</span>
-              <h3>Equilibrar as jornadas</h3>
-              <p>Nomeie suas responsabilidades e pense em limites que caibam na sua realidade.</p>
-              <button
-                class="card-open"
-                type="button"
-                data-open-content="equilibrio-jornadas"
-              >
-                Ver ideias <span aria-hidden="true">→</span>
-              </button>
-            </article>
-
-            <article
-              class="content-card library-card"
-              data-content-card
-              data-content-id="manejo-estresse"
-              data-category="estudos"
-              data-search="gerenciar estresse pressão respirar atenção presente"
-            >
-              <span class="card-kicker">Estudos e trabalho</span>
-              <span class="content-icon icon-sage" aria-hidden="true">〰</span>
-              <h3>Lidar com momentos de estresse</h3>
-              <p>Algumas estratégias simples podem ajudar a atravessar um momento exigente.</p>
-              <button
-                class="card-open"
-                type="button"
-                data-open-content="manejo-estresse"
-              >
-                Ver ideias <span aria-hidden="true">→</span>
-              </button>
-            </article>
-
-            <article
-              class="content-card library-card"
-              data-content-card
-              data-content-id="conexao-apoio"
-              data-category="apoio"
-              data-search="apoio conexão conversar pessoa confiança ajuda"
-            >
-              <span class="card-kicker">Rede de apoio</span>
-              <span class="content-icon icon-blue" aria-hidden="true">♡</span>
-              <h3>Manter conexões</h3>
-              <p>
-                Conversar com alguém de confiança pode ser um primeiro passo para
-                não carregar tudo só.
-              </p>
-              <button class="card-open" type="button" data-open-content="conexao-apoio">
-                Ver ideias <span aria-hidden="true">→</span>
-              </button>
-            </article>
           </div>
 
           <p class="empty-state" id="library-empty" hidden>
@@ -639,11 +426,12 @@
         <div class="container">
           <div class="support-intro">
             <div>
-              <p class="eyebrow eyebrow-light">Central de apoio psicológico</p>
+              <p class="eyebrow eyebrow-light">Central de apoio</p>
               <h2 id="support-title">Você pode buscar cuidado.</h2>
               <p>
-                Se algo tem sido difícil, conversar com um serviço de saúde é um
-                caminho possível. A rede pública pode orientar sobre o próximo passo.
+                Apoio emocional oferece escuta e acolhimento. Profissionais habilitados
+                podem avaliar, orientar e acompanhar. Em risco imediato, procure um
+                serviço de urgência ou emergência.
               </p>
             </div>
             <span class="support-symbol" aria-hidden="true">

@@ -1,117 +1,195 @@
 # Mente em Equilíbrio
 
-Protótipo de plataforma web educativa sobre saúde mental, autocuidado e caminhos para buscar apoio. A proposta é oferecer informação clara e acolhedora a estudantes universitários adultos, em especial a quem concilia estudo, trabalho e responsabilidades pessoais.
+**Plataforma educativa sobre saúde mental, autocuidado e caminhos para buscar apoio.**
 
-## Objetivo
+[Acessar o site publicado](https://carloseduardolemos.github.io/SaudeMental/) · [Ver o repositório no GitHub](https://github.com/CarlosEduardoLemos/SaudeMental)
 
-Facilitar o acesso a conteúdos introdutórios e a informações oficiais sobre saúde mental, com uma biblioteca de autocuidado e uma central de apoio. O site foi pensado para as etapas de Prototipação e Validação de um projeto acadêmico que aplica princípios de Design Thinking.
+## Sobre o projeto
+
+O Mente em Equilíbrio é uma plataforma web educativa que desenvolvi individualmente como projeto acadêmico. O site organiza informações sobre saúde mental, ideias gerais de autocuidado e caminhos para encontrar serviços de apoio.
+
+O conteúdo é informativo. O site não oferece diagnóstico, psicoterapia, atendimento clínico ou assistência emergencial.
+
+## Motivação
+
+Estudantes universitários adultos podem conciliar estudos, trabalho, deslocamentos e responsabilidades pessoais. Encontrar informações compreensíveis e saber onde buscar apoio nem sempre é simples. O projeto reúne esses recursos em uma plataforma gratuita, com navegação direta e linguagem acolhedora.
+
+## Objetivos
+
+- Facilitar o acesso a informações educativas e a fontes institucionais.
+- Promover conscientização e compreensão sobre saúde mental.
+- Oferecer acolhimento informativo sem fazer avaliação clínica.
+- Apresentar ideias gerais de autocuidado, sem tratá-las como substitutas de atendimento.
+- Orientar sobre possibilidades de apoio profissional e emocional.
+- Manter a navegação simples e considerar acessibilidade em diferentes dispositivos.
 
 ## Público-alvo
 
-Estudantes universitários adultos, com atenção a pessoas que conciliam estudos, trabalho e responsabilidades pessoais.
+O público inicial são estudantes universitários adultos, em especial pessoas que conciliam estudo, trabalho e outras responsabilidades. Os materiais também podem ser úteis a outras pessoas, mas o projeto ainda não foi validado com todos os públicos.
 
-## Problema identificado
+## Funcionalidades
 
-Encontrar informação confiável, compreensível e caminhos de apoio pode ser difícil quando a rotina universitária se soma a outras responsabilidades. O protótipo organiza esses pontos em uma experiência simples, responsiva e gratuita.
+### Conteúdos educativos
 
-## Solução proposta
+- Materiais sobre saúde mental e bem-estar, ansiedade, depressão, estresse acadêmico, sobrecarga e busca por ajuda profissional.
+- Leituras detalhadas em diálogos nativos, com links de referência associados a cada conteúdo.
 
-Uma plataforma estática de acesso livre com conteúdos educativos, materiais de autocuidado, pesquisa e filtros, além de links oficiais para serviços públicos e de apoio emocional. O site não coleta dados e não oferece avaliação ou atendimento clínico.
+### Biblioteca de autocuidado
 
-## Tecnologias utilizadas
+- Ideias gerais sobre rotina, sono, pausas, conciliação de responsabilidades, estresse e conexões de apoio.
+- Aviso de que as sugestões são gerais e não substituem orientações profissionais.
 
-- HTML5 semântico;
-- CSS3, com layout responsivo e preferência por movimento reduzido;
-- JavaScript puro organizado em arquivos separados, sem backend, armazenamento pessoal, dependências ou etapa de compilação;
-- SVG inline para ícones e ilustração;
-- Google Fonts (DM Sans e Manrope), com fontes de sistema como alternativa.
+### Central de apoio
 
-## Funcionalidades disponíveis
+- Orientações sobre UBS, RAPS, CAPS e serviços de apoio estudantil, cuja oferta depende da instituição.
+- Informações de apoio emocional do CVV pelo telefone 188.
+- Orientação para procurar uma UPA ou pronto-socorro ou acionar o SAMU pelo 192 em situações de emergência ou risco imediato.
 
-- Navegação por âncoras, menu móvel e atalho para pular ao conteúdo;
-- Busca de temas educativos;
-- Busca e filtro por categoria na biblioteca de autocuidado;
-- Cartões que abrem leituras detalhadas em uma janela acessível por teclado;
-- Fontes oficiais associadas aos conteúdos e links externos seguros;
-- Orientações gerais sobre SUS, RAPS, CAPS, CVV e apoio institucional;
-- Atalho de retorno ao início e aviso educativo visível;
-- Área discreta preparada para receber futuramente o link de avaliação do protótipo.
+### Pesquisa e filtros
 
-## Estrutura de arquivos
+- Busca sem distinção de acentos nos títulos, resumos, termos de busca, textos completos e fontes.
+- Filtro por categoria na biblioteca e contagem de resultados com estado para tecnologia assistiva.
+- Mensagens para pesquisas sem resultados.
+
+### Acessibilidade e navegação
+
+- Menu móvel com estado anunciado e fechamento por Escape.
+- Atalho para pular ao conteúdo, foco visível, rótulos para campos de busca e navegação por teclado.
+- Diálogos nativos com título acessível, fechamento por Escape e retorno do foco ao botão que abriu o conteúdo.
+- Layout responsivo e respeito à preferência por movimento reduzido.
+
+## Estrutura do projeto
 
 ```text
-mente-em-equilibrio/
-├── index.html
+.
+├── assets/
+│   └── images/
+│       └── .gitkeep
 ├── css/
 │   └── style.css
 ├── js/
+│   ├── content-utils.js
 │   ├── content.js
 │   └── main.js
-├── assets/
-│   └── images/
-├── README.md
-├── .gitignore
-└── .editorconfig
+├── tests/
+│   └── site-checks.test.cjs
+├── index.html
+├── LICENSE
+└── README.md
 ```
 
-A ilustração principal e os ícones são SVG inline; por isso, a pasta `assets/images/` está prevista para imagens que venham a ser adicionadas em versões futuras.
+- `index.html` define a estrutura semântica, a navegação, os campos e os espaços dos catálogos.
+- `js/content.js` reúne textos, resumos, categorias, palavras-chave e fontes dos materiais em um catálogo.
+- `js/content-utils.js` contém as funções de normalização e busca usadas pela interface e pelos testes.
+- `js/main.js` cria os cartões com APIs seguras do DOM e controla menu, filtros, busca e diálogos.
+- `css/style.css` contém identidade visual, estados de foco, ajustes responsivos e movimento reduzido.
+- `tests/site-checks.test.cjs` verifica o catálogo, busca, filtros e relações entre IDs e links internos com recursos nativos do Node.js.
 
-## Executar localmente
+## Tecnologias utilizadas
 
-1. Baixe ou clone este repositório.
-2. Abra `index.html` diretamente no navegador. O site funciona sem servidor e sem backend.
-3. Para uma prévia usando servidor local, execute no diretório do projeto:
+- HTML5 semântico.
+- CSS3.
+- JavaScript sem framework ou dependências de execução.
+- SVG inline para ícones e ilustração.
+- Node.js e módulo `node:test` para verificações automatizadas locais.
+- GitHub Pages para hospedagem estática.
+- Google Fonts (DM Sans e Manrope), com fontes de sistema como alternativas.
 
-   ```bash
-   python -m http.server 8000
-   ```
+## Como executar localmente
 
-4. Acesse `http://localhost:8000`.
+Clone o repositório e entre na pasta:
 
-O conteúdo e os recursos locais funcionam sem conexão. Google Fonts e os links externos dependem de conexão à internet.
+```bash
+git clone https://github.com/CarlosEduardoLemos/SaudeMental.git
+cd SaudeMental
+```
 
-## Publicar no GitHub Pages
+Inicie um servidor estático com Python:
 
-1. Envie estes arquivos para um repositório no GitHub.
-2. Abra **Settings → Pages** no repositório.
-3. Em **Build and deployment**, escolha **Deploy from a branch**.
-4. Selecione a branch principal e a pasta `/ (root)` e salve.
-5. Aguarde a publicação e use o endereço fornecido pelo GitHub Pages.
+```bash
+python -m http.server 8000
+```
 
-Os caminhos de CSS e JavaScript são relativos, então o site pode ser publicado na raiz de um domínio ou em um repositório de projeto.
+Abra `http://localhost:8000` no navegador. A aplicação atual é estática e não exige backend, instalação de dependências ou etapa de compilação. O catálogo e os arquivos locais ficam no repositório; Google Fonts e os links externos dependem da conexão com a internet.
 
-## Fontes consultadas
+Para executar as verificações automatizadas, use Node.js:
+
+```bash
+node --test tests/site-checks.test.cjs
+```
+
+## Publicação
+
+O projeto pode ser publicado diretamente pelo GitHub Pages:
+
+1. Envie os arquivos do projeto para o repositório no GitHub.
+2. Abra **Settings → Pages**.
+3. Em **Build and deployment**, selecione **Deploy from a branch**.
+4. Selecione a branch principal e a pasta **/(root)** e salve.
+5. Aguarde o GitHub Pages publicar o endereço indicado nas configurações.
+
+Os caminhos de CSS e JavaScript são relativos, o que permite publicar o site na raiz do usuário ou em um repositório de projeto. Não há processo de build nem workflow de deploy neste repositório.
+
+## Acessibilidade
+
+O código inclui landmarks semânticos, hierarquia de títulos, link para pular ao conteúdo, campos rotulados, foco visível, controles operáveis por teclado, estados de resultado e diálogos nativos. O CSS considera reflow em telas menores e a preferência por movimento reduzido. As verificações automatizadas cobrem requisitos estruturais e funções de busca; elas não comprovam conformidade WCAG 2.2 AA. Ainda são necessários testes manuais em diferentes navegadores, validação com leitores de tela e avaliação com pessoas usuárias.
+
+## Segurança e privacidade
+
+O código da aplicação não inclui cadastro, formulários de relato, análise de saúde, cookies próprios, armazenamento em `localStorage` ou `sessionStorage`, nem scripts de rastreamento. A busca ocorre no navegador com dados estáticos do repositório.
+
+O site carrega folhas de estilo e fontes do Google Fonts quando há conexão e abre páginas de instituições externas. Esses serviços e o GitHub Pages podem processar dados técnicos de acesso de acordo com suas próprias políticas. O projeto não controla o processamento feito por terceiros.
+
+Uma política CSP em meta tag restringe scripts, estilos, fontes e outros recursos às origens necessárias, bloqueia objetos e restringe a origem base. Os cartões e diálogos são criados com APIs do DOM e `textContent`; os links de fontes aceitam somente URLs HTTPS e usam `noopener noreferrer` ao abrir outra aba.
+
+## Fontes e referências
+
+O site associa fontes às leituras. Os links abaixo são referências institucionais utilizadas pelo projeto; a disponibilidade e o conteúdo podem mudar, por isso não se afirma uma revisão contínua.
 
 - [Ministério da Saúde — Saúde Mental](https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/s/saude-mental)
 - [Ministério da Saúde — Rede de Atenção Psicossocial (RAPS)](https://www.gov.br/saude/pt-br/composicao/saes/desmad/raps)
 - [Ministério da Saúde — Centros de Atenção Psicossocial (CAPS)](https://www.gov.br/saude/pt-br/composicao/saes/desmad/raps/caps)
-- [Ministério da Saúde — Transtornos de Ansiedade no adulto](https://linhasdecuidado.saude.gov.br/portal/ansiedade/sou-paciente)
+- [Ministério da Saúde — Linha de cuidado para ansiedade](https://linhasdecuidado.saude.gov.br/portal/ansiedade/sou-paciente)
 - [Ministério da Saúde — Depressão](https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/d/depressao/depressao)
 - [Ministério da Saúde — Guia de Atividade Física para a População Brasileira](https://www.gov.br/saude/pt-br/composicao/saps/promocao-da-saude/programa-crescer-saudavel/publicacoes/guia-de-atividade-fisica-para-a-populacao-brasileira)
 - [Centro de Valorização da Vida — Ligue 188](https://cvv.org.br/ligue-188-3/)
-- [Organização Mundial da Saúde — Mental health (em inglês)](https://www.who.int/news-room/fact-sheets/detail/mental-health-strengthening-our-response)
-- [Organização Mundial da Saúde — Stress (em inglês)](https://www.who.int/news-room/questions-and-answers/item/stress)
+- [Organização Mundial da Saúde — Saúde mental (em inglês)](https://www.who.int/news-room/fact-sheets/detail/mental-health-strengthening-our-response)
+- [Organização Mundial da Saúde — Estresse (em inglês)](https://www.who.int/news-room/questions-and-answers/item/stress)
 - [Organização Mundial da Saúde — Recursos de bem-estar mental (em inglês)](https://www.who.int/news-room/feature-stories/mental-well-being-resources-for-the-public/)
+- [W3C — Web Content Accessibility Guidelines (WCAG) 2.2](https://www.w3.org/TR/WCAG22/)
 
-As informações de serviços foram conferidas nas páginas oficiais listadas. A disponibilidade e os meios de acesso variam conforme o município e a instituição de ensino; consulte os canais oficiais locais.
+## Conteúdo sensível
 
-## Limitações do protótipo
+O Mente em Equilíbrio não é um portal de notícias. Eventuais materiais sobre suicídio, negligência, violações de direitos humanos ou acontecimentos históricos devem ter finalidade educativa e contribuir para conscientização, prevenção, respeito e contextualização. A política editorial prevê evitar títulos sensacionalistas e detalhes gráficos, nunca descrever métodos de suicídio e oferecer caminhos de apoio quando o tema exigir. A seção secundária **Histórias, Memória e Reflexão** ainda não tem materiais publicados; nenhum cartão ou referência fictícia foi incluído.
 
-- O conteúdo é educativo e geral, não substitui avaliação, diagnóstico ou acompanhamento por profissionais de saúde.
-- O protótipo não tem backend, login, cadastro, registro de respostas ou armazenamento de informações pessoais.
-- Não há localização automática de UBS/CAPS nem listagem de serviços por município.
-- Os serviços de apoio estudantil dependem da oferta de cada instituição; não foi presumida disponibilidade local.
-- O formulário Google Forms de validação ainda não foi configurado. A seção está reservada para adicionar o link real posteriormente.
-- Parte das fontes da OMS está em inglês; links oficiais podem ser alterados pelos próprios órgãos.
+## Roadmap
 
-## Possíveis melhorias futuras
+- [x] Centralizar metadados, resumos e textos do catálogo em uma única fonte.
+- [x] Manter busca, filtro de categorias, contagem de resultados e diálogos a partir do catálogo.
+- [x] Adicionar verificações automatizadas sem dependências externas.
+- [ ] Ampliar a biblioteca educativa com conteúdo e fontes revisados.
+- [ ] Cadastrar materiais históricos verificados em uma seção editorial secundária.
+- [ ] Revisar periodicamente as referências institucionais e registrar datas de revisão quando ocorrerem.
+- [ ] Validar acessibilidade com leitores de tela, navegadores diferentes e pessoas usuárias.
+- [ ] Realizar sessões de usabilidade com estudantes e outros públicos.
 
-- Adicionar o link real de avaliação depois de preparar o formulário de validação;
-- Conduzir sessões com estudantes e aprimorar navegação, linguagem e filtros a partir do retorno;
-- Incluir uma página de fontes e datas da última revisão editorial;
-- Acrescentar informações locais de apoio após validação com instituições e serviços responsáveis;
-- Ampliar a revisão de acessibilidade com pessoas usuárias de tecnologias assistivas.
+## Limitações
 
-## Contexto acadêmico
+- A finalidade é exclusivamente educativa; não há atendimento clínico, diagnóstico ou resposta emergencial.
+- O site não identifica automaticamente serviços locais. A disponibilidade de UBS, CAPS, UPA e apoio estudantil pode variar conforme município e instituição.
+- O conteúdo depende de fontes externas, cujos endereços, recomendações e disponibilidade podem mudar.
+- A hospedagem estática não oferece contas, dados personalizados ou integração para localizar serviços.
+- A seção **Histórias, Memória e Reflexão**, os registros de datas editoriais e a validação com usuários ainda não foram implementados.
+- Os testes automatizados atuais não substituem verificação visual, testes de interação em navegador, leitor de tela ou auditoria completa de acessibilidade.
 
-Projeto desenvolvido individualmente como atividade acadêmica da disciplina de Inovação e Criatividade. O protótipo aplica a abordagem de Design Thinking e foi concebido para demonstração e validação com estudantes universitários.
+## Contribuições
+
+Sugestões, correções e melhorias podem ser propostas por meio de uma issue ou pull request no [repositório do GitHub](https://github.com/CarlosEduardoLemos/SaudeMental). Ao reportar um problema, descreva os passos para reproduzi-lo e o comportamento observado. Não publique relatos pessoais, dados médicos ou outras informações sensíveis em issues públicas. Uma contribuição não representa revisão clínica nem atendimento individual.
+
+## Licença
+
+O projeto está sob a licença [MIT](LICENSE), conforme o arquivo de licença existente.
+
+## Autoria e contexto acadêmico
+
+Desenvolvi este projeto individualmente como parte de uma atividade acadêmica da disciplina de Inovação e Criatividade, aplicando princípios de Design Thinking. O nome associado à licença do projeto é Carlos Eduardo De Souza Lemos.

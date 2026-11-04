@@ -41,7 +41,17 @@
 
   const CONTENTS = {
     "saude-mental": {
+      id: "saude-mental",
+      collection: "education",
+      type: "artigo",
       category: "Bem-estar",
+      summary: "O que influencia nosso bem-estar e por que ele faz parte da saúde como um todo.",
+      keywords: ["saúde mental", "bem-estar emocional", "cuidado"],
+      iconTone: "sage",
+      iconSymbol: "✳",
+      publicationDate: null,
+      reviewDate: null,
+      sensitive: false,
       title: "Saúde mental e bem-estar",
       paragraphs: [
         "Saúde mental faz parte da saúde como um todo. Ela está ligada ao bem-estar, à possibilidade "
@@ -57,7 +67,17 @@
       sources: [SOURCES.ministryMental, SOURCES.whoMental]
     },
     ansiedade: {
+      id: "ansiedade",
+      collection: "education",
+      type: "artigo",
       category: "Emoções",
+      summary: "Uma reação humana que pode pedir atenção quando se torna frequente ou difícil de manejar.",
+      keywords: ["ansiedade", "preocupação", "provas", "sintomas"],
+      iconTone: "blue",
+      iconSymbol: "〰",
+      publicationDate: null,
+      reviewDate: null,
+      sensitive: false,
       title: "Ansiedade",
       paragraphs: [
         "A ansiedade pode ser uma reação humana diante de situações novas, incertas ou exigentes — "
@@ -72,7 +92,17 @@
       sources: [SOURCES.anxiety, SOURCES.ministryMental]
     },
     depressao: {
+      id: "depressao",
+      collection: "education",
+      type: "artigo",
       category: "Saúde emocional",
+      summary: "Informação responsável para reduzir estigmas e lembrar que apoio profissional está disponível.",
+      keywords: ["depressão", "humor", "interesse", "saúde", "profissional"],
+      iconTone: "lilac",
+      iconSymbol: "☁",
+      publicationDate: null,
+      reviewDate: null,
+      sensitive: false,
       title: "Depressão",
       paragraphs: [
         "Depressão é uma condição de saúde que pode afetar emoções, pensamentos, relações e "
@@ -87,7 +117,17 @@
       sources: [SOURCES.depression, SOURCES.ministryMental]
     },
     "estresse-academico": {
+      id: "estresse-academico",
+      collection: "education",
+      type: "artigo",
       category: "Vida universitária",
+      summary: "Prazos e exigências podem pesar. Entenda o estresse e considere formas de buscar suporte.",
+      keywords: ["estresse", "acadêmico", "faculdade", "provas", "prazos"],
+      iconTone: "peach",
+      iconSymbol: "◌",
+      publicationDate: null,
+      reviewDate: null,
+      sensitive: false,
       title: "Estresse acadêmico",
       paragraphs: [
         "O estresse é uma resposta humana a situações difíceis ou exigentes. Na vida universitária, "
@@ -103,7 +143,17 @@
       sources: [SOURCES.whoStress, SOURCES.ministryMental]
     },
     sobrecarga: {
+      id: "sobrecarga",
+      collection: "education",
+      type: "artigo",
       category: "Múltiplas jornadas",
+      summary: "Reconheça limites reais quando várias responsabilidades se acumulam.",
+      keywords: ["sobrecarga", "trabalho", "estudo", "vida pessoal", "equilíbrio"],
+      iconTone: "sage",
+      iconSymbol: "↗",
+      publicationDate: null,
+      reviewDate: null,
+      sensitive: false,
       title: "Conciliar trabalho e estudos",
       paragraphs: [
         "Conciliar estudo, trabalho, deslocamento, cuidado da família e vida pessoal pode exigir "
@@ -118,7 +168,17 @@
       sources: [SOURCES.ministryMental, SOURCES.whoStress]
     },
     "ajuda-profissional": {
+      id: "ajuda-profissional",
+      collection: "education",
+      type: "artigo",
       category: "Rede de cuidado",
+      summary: "Você não precisa esperar chegar ao limite para conversar com um serviço de saúde.",
+      keywords: ["ajuda profissional", "psicólogo", "psicóloga", "procurar apoio"],
+      iconTone: "blue",
+      iconSymbol: "♡",
+      publicationDate: null,
+      reviewDate: null,
+      sensitive: false,
       title: "Procurar ajuda profissional",
       paragraphs: [
         "Buscar apoio é uma forma de cuidado. Você pode procurar uma Unidade Básica de Saúde (UBS) "
@@ -133,7 +193,18 @@
       sources: [SOURCES.ministryMental, SOURCES.rapS, SOURCES.caps]
     },
     "organizar-rotina": {
+      id: "organizar-rotina",
+      collection: "library",
+      type: "pratica-autocuidado",
+      categoryId: "rotina",
       category: "Rotina",
+      summary: "Comece pelas prioridades e planeje com espaço para imprevistos e descanso.",
+      keywords: ["organização", "rotina", "prioridades", "planejamento", "tempo"],
+      iconTone: "sage",
+      iconSymbol: "▦",
+      publicationDate: null,
+      reviewDate: null,
+      sensitive: false,
       title: "Organizar a rotina possível",
       paragraphs: [
         "Planejamento serve para apoiar você, não para preencher cada minuto. Comece anotando os "
@@ -148,7 +219,18 @@
       sources: [SOURCES.whoStress, SOURCES.whoResources]
     },
     sono: {
+      id: "sono",
+      collection: "library",
+      type: "pratica-autocuidado",
+      categoryId: "bem-estar",
       category: "Bem-estar",
+      summary: "O descanso é parte do cuidado com o corpo e a mente; hábitos regulares podem ajudar.",
+      keywords: ["sono", "descanso", "dormir", "bem-estar"],
+      iconTone: "blue",
+      iconSymbol: "☾",
+      publicationDate: null,
+      reviewDate: null,
+      sensitive: false,
       title: "Dar espaço ao sono",
       paragraphs: [
         "O sono é importante para o corpo e a mente. Demandas de trabalho e estudo podem dificultar o "
@@ -162,7 +244,18 @@
       sources: [SOURCES.whoStress, SOURCES.ministryMental]
     },
     pausas: {
+      id: "pausas",
+      collection: "library",
+      type: "pratica-autocuidado",
+      categoryId: "bem-estar",
       category: "Bem-estar",
+      summary: "Pequenos intervalos podem criar uma transição entre tarefas e compromissos.",
+      keywords: ["pausas", "descanso", "intervalo", "movimento", "estudo", "trabalho"],
+      iconTone: "peach",
+      iconSymbol: "☼",
+      publicationDate: null,
+      reviewDate: null,
+      sensitive: false,
       title: "Fazer pausas com intenção",
       paragraphs: [
         "Quando a agenda permite, uma pausa curta pode marcar a passagem entre tarefas. Você pode "
@@ -176,7 +269,18 @@
       sources: [SOURCES.whoStress, SOURCES.activity]
     },
     "equilibrio-jornadas": {
+      id: "equilibrio-jornadas",
+      collection: "library",
+      type: "pratica-autocuidado",
+      categoryId: "estudos",
       category: "Estudos e trabalho",
+      summary: "Nomeie suas responsabilidades e pense em limites que caibam na sua realidade.",
+      keywords: ["equilíbrio", "estudos", "trabalho", "vida pessoal", "limites", "sobrecarga"],
+      iconTone: "lilac",
+      iconSymbol: "⌁",
+      publicationDate: null,
+      reviewDate: null,
+      sensitive: false,
       title: "Equilibrar as jornadas",
       paragraphs: [
         "Estudo, trabalho e responsabilidades pessoais disputam tempo e energia. Em vez de buscar um "
@@ -191,7 +295,18 @@
       sources: [SOURCES.ministryMental, SOURCES.whoStress]
     },
     "manejo-estresse": {
+      id: "manejo-estresse",
+      collection: "library",
+      type: "pratica-autocuidado",
+      categoryId: "estudos",
       category: "Estudos e trabalho",
+      summary: "Algumas estratégias simples podem ajudar a atravessar um momento exigente.",
+      keywords: ["gerenciar estresse", "pressão", "respirar", "atenção", "presente"],
+      iconTone: "sage",
+      iconSymbol: "〰",
+      publicationDate: null,
+      reviewDate: null,
+      sensitive: false,
       title: "Lidar com momentos de estresse",
       paragraphs: [
         "Em um momento de tensão, algumas pessoas acham útil pausar e notar o que está acontecendo ao "
@@ -206,7 +321,18 @@
       sources: [SOURCES.whoStress, SOURCES.whoResources]
     },
     "conexao-apoio": {
+      id: "conexao-apoio",
+      collection: "library",
+      type: "pratica-autocuidado",
+      categoryId: "apoio",
       category: "Rede de apoio",
+      summary: "Conversar com alguém de confiança pode ser um primeiro passo para não carregar tudo só.",
+      keywords: ["apoio", "conexão", "conversar", "pessoa", "confiança", "ajuda"],
+      iconTone: "blue",
+      iconSymbol: "♡",
+      publicationDate: null,
+      reviewDate: null,
+      sensitive: false,
       title: "Manter conexões",
       paragraphs: [
         "Ter alguém com quem conversar pode ajudar a não atravessar momentos difíceis em isolamento. "
