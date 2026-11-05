@@ -14,8 +14,16 @@ const contents = browserContext.window.MenteEquilibrio.contents;
 const { filterContents, scrollToTop } = browserContext.window.MenteEquilibrioUtils;
 const html = readProjectFile("index.html");
 const mainJs = readProjectFile("js/main.js");
+const contentUtilsJs = readProjectFile("js/content-utils.js");
 const css = readProjectFile("css/style.css");
 const readme = readProjectFile("README.md");
+
+test("os scripts são carregados com defer na ordem necessária", () => {
+  const scripts = [...html.matchAll(/<script src="([^"]+)" defer><\/script>/g)]
+    .map((match) => match[1]);
+
+  assert.deepEqual(scripts, ["js/content-utils.js", "js/content.js", "js/main.js"]);
+});
 
 test("o catálogo mantém IDs únicos e metadados completos", () => {
   const records = Object.values(contents);
@@ -59,34 +67,27 @@ test("o filtro de categorias e o estado sem resultados são preservados", () => 
   assert.deepEqual(Array.from(filterContents(contents, "termo inexistente")), []);
 });
 
-test("o retorno ao início rola mesmo com #inicio já ativo e respeita movimento reduzido", () => {
+test("o retorno ao início não altera o histórico e respeita movimento reduzido", () => {
   let scrollOptions;
-  let pushedUrl = null;
   let focusOptions;
+  const calls = [];
   const windowLike = {
     location: { hash: "#inicio" },
-    history: {
-      state: { previous: true },
-      pushState(_state, _title, url) {
-        pushedUrl = url;
-        windowLike.location.hash = url;
-      },
-    },
     matchMedia: () => ({ matches: false }),
-    scrollTo: (options) => { scrollOptions = options; },
+    scrollTo: (options) => { calls.push("scroll"); scrollOptions = options; },
   };
 
-  scrollToTop(windowLike, { focus: (options) => { focusOptions = options; } });
+  scrollToTop(windowLike, { focus: (options) => { calls.push("focus"); focusOptions = options; } });
   assert.equal(scrollOptions.top, 0);
   assert.equal(scrollOptions.behavior, "smooth");
-  assert.equal(pushedUrl, null, "não cria histórico extra quando #inicio já está ativo");
   assert.equal(focusOptions.preventScroll, true);
+  assert.deepEqual(calls, ["focus", "scroll"], "o foco não deve substituir a rolagem solicitada");
 
   windowLike.location.hash = "#apoio";
   windowLike.matchMedia = () => ({ matches: true });
   scrollToTop(windowLike);
-  assert.equal(scrollOptions.behavior, "instant");
-  assert.equal(pushedUrl, "#inicio");
+  assert.equal(scrollOptions.behavior, "auto");
+  assert.equal(windowLike.location.hash, "#apoio", "a função não deve alterar a navegação ou o histórico");
 });
 
 test("os links internos apontam para IDs existentes e sem duplicação", () => {
@@ -131,12 +132,14 @@ test("o diálogo, o menu e as preferências responsivas têm suportes básicos",
   assert.match(css, /:focus-visible/);
 });
 
-test("o link de retorno está conectado ao comando explícito de rolagem", () => {
+test("o link de retorno usa a navegação nativa e trata apenas o hash repetido", () => {
   assert.match(html, /class="back-top" href="#inicio"/);
-  assert.match(html, /class="site-header" id="inicio"/);
+  assert.match(html, /class="site-header" id="inicio" tabindex="-1"/);
   assert.match(mainJs, /function setupBackToTop\(\)/);
   assert.match(mainJs, /event\.preventDefault\(\)/);
-  assert.match(mainJs, /scrollToTop\(window, brand\)/);
+  assert.match(mainJs, /if \(window\.location\.hash !== "#inicio"\) return;/);
+  assert.match(mainJs, /scrollToTop\(window, header\)/);
+  assert.doesNotMatch(contentUtilsJs, /history\.pushState/);
 });
 
 test("o README apresenta explicitamente o endereço publicado", () => {

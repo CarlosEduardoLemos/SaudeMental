@@ -27,17 +27,15 @@
   }
 
   function scrollToTop(windowObject = window, focusTarget = null) {
-    if (windowObject.location.hash !== "#inicio") {
-      windowObject.history.pushState(windowObject.history.state, "", "#inicio");
-    }
-
     const prefersReducedMotion = typeof windowObject.matchMedia === "function"
       && windowObject.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    // Move focus first so its default scroll cannot override this scroll request.
+    focusTarget?.focus({ preventScroll: true });
     windowObject.scrollTo({
       top: 0,
-      behavior: prefersReducedMotion ? "instant" : "smooth",
+      behavior: prefersReducedMotion ? "auto" : "smooth",
     });
-    focusTarget?.focus({ preventScroll: true });
   }
 
   window.MenteEquilibrioUtils = Object.freeze({

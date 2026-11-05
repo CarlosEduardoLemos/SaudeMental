@@ -110,9 +110,13 @@ function setupBackToTop() {
   if (!backToTop) return;
 
   backToTop.addEventListener("click", (event) => {
+    // Let the browser handle a new fragment, including its history and focus.
+    if (window.location.hash !== "#inicio") return;
+
+    // A repeated fragment may be treated as a no-op by the browser.
     event.preventDefault();
-    const brand = document.querySelector(".site-header .brand");
-    scrollToTop(window, brand);
+    const header = document.querySelector("#inicio");
+    scrollToTop(window, header);
   });
 }
 
