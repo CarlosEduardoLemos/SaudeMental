@@ -120,6 +120,8 @@ node --test tests/site-checks.test.cjs
 
 ## Publicação
 
+**Site publicado:** [https://carloseduardolemos.github.io/SaudeMental/](https://carloseduardolemos.github.io/SaudeMental/)
+
 O projeto pode ser publicado diretamente pelo GitHub Pages:
 
 1. Envie os arquivos do projeto para o repositório no GitHub.

@@ -11,10 +11,11 @@ vm.runInNewContext(readProjectFile("js/content-utils.js"), browserContext);
 vm.runInNewContext(readProjectFile("js/content.js"), browserContext);
 
 const contents = browserContext.window.MenteEquilibrio.contents;
-const { filterContents } = browserContext.window.MenteEquilibrioUtils;
+const { filterContents, scrollToTop } = browserContext.window.MenteEquilibrioUtils;
 const html = readProjectFile("index.html");
 const mainJs = readProjectFile("js/main.js");
 const css = readProjectFile("css/style.css");
+const readme = readProjectFile("README.md");
 
 test("o catálogo mantém IDs únicos e metadados completos", () => {
   const records = Object.values(contents);
@@ -58,6 +59,36 @@ test("o filtro de categorias e o estado sem resultados são preservados", () => 
   assert.deepEqual(Array.from(filterContents(contents, "termo inexistente")), []);
 });
 
+test("o retorno ao início rola mesmo com #inicio já ativo e respeita movimento reduzido", () => {
+  let scrollOptions;
+  let pushedUrl = null;
+  let focusOptions;
+  const windowLike = {
+    location: { hash: "#inicio" },
+    history: {
+      state: { previous: true },
+      pushState(_state, _title, url) {
+        pushedUrl = url;
+        windowLike.location.hash = url;
+      },
+    },
+    matchMedia: () => ({ matches: false }),
+    scrollTo: (options) => { scrollOptions = options; },
+  };
+
+  scrollToTop(windowLike, { focus: (options) => { focusOptions = options; } });
+  assert.equal(scrollOptions.top, 0);
+  assert.equal(scrollOptions.behavior, "smooth");
+  assert.equal(pushedUrl, null, "não cria histórico extra quando #inicio já está ativo");
+  assert.equal(focusOptions.preventScroll, true);
+
+  windowLike.location.hash = "#apoio";
+  windowLike.matchMedia = () => ({ matches: true });
+  scrollToTop(windowLike);
+  assert.equal(scrollOptions.behavior, "instant");
+  assert.equal(pushedUrl, "#inicio");
+});
+
 test("os links internos apontam para IDs existentes e sem duplicação", () => {
   const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map((match) => match[1]);
   const idSet = new Set(ids);
@@ -98,4 +129,16 @@ test("o diálogo, o menu e as preferências responsivas têm suportes básicos",
   assert.match(css, /@media \(max-width: 420px\)/);
   assert.match(css, /@media \(prefers-reduced-motion: reduce\)/);
   assert.match(css, /:focus-visible/);
+});
+
+test("o link de retorno está conectado ao comando explícito de rolagem", () => {
+  assert.match(html, /class="back-top" href="#inicio"/);
+  assert.match(html, /class="site-header" id="inicio"/);
+  assert.match(mainJs, /function setupBackToTop\(\)/);
+  assert.match(mainJs, /event\.preventDefault\(\)/);
+  assert.match(mainJs, /scrollToTop\(window, brand\)/);
+});
+
+test("o README apresenta explicitamente o endereço publicado", () => {
+  assert.match(readme, /\*\*Site publicado:\*\* \[https:\/\/carloseduardolemos\.github\.io\/SaudeMental\/\]\(https:\/\/carloseduardolemos\.github\.io\/SaudeMental\/\)/);
 });

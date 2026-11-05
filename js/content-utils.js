@@ -26,8 +26,23 @@
     });
   }
 
+  function scrollToTop(windowObject = window, focusTarget = null) {
+    if (windowObject.location.hash !== "#inicio") {
+      windowObject.history.pushState(windowObject.history.state, "", "#inicio");
+    }
+
+    const prefersReducedMotion = typeof windowObject.matchMedia === "function"
+      && windowObject.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    windowObject.scrollTo({
+      top: 0,
+      behavior: prefersReducedMotion ? "instant" : "smooth",
+    });
+    focusTarget?.focus({ preventScroll: true });
+  }
+
   window.MenteEquilibrioUtils = Object.freeze({
     filterContents,
     normalizeText,
+    scrollToTop,
   });
 })();

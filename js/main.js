@@ -1,5 +1,5 @@
 const { contents: CONTENTS } = window.MenteEquilibrio;
-const { filterContents } = window.MenteEquilibrioUtils;
+const { filterContents, scrollToTop } = window.MenteEquilibrioUtils;
 
 function createContentCard(content) {
   const card = document.createElement("article");
@@ -103,6 +103,17 @@ function setupMobileNavigation() {
       if (event.matches) closeMenu();
     });
   }
+}
+
+function setupBackToTop() {
+  const backToTop = document.querySelector(".back-top");
+  if (!backToTop) return;
+
+  backToTop.addEventListener("click", (event) => {
+    event.preventDefault();
+    const brand = document.querySelector(".site-header .brand");
+    scrollToTop(window, brand);
+  });
 }
 
 function setupCardFilters({
@@ -255,6 +266,7 @@ function setCurrentYear() {
 renderContentCards();
 renderLibraryCategories();
 setupMobileNavigation();
+setupBackToTop();
 setupContentSearch();
 setupContentDialog();
 setCurrentYear();
